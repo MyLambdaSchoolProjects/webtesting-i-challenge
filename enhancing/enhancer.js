@@ -1,3 +1,5 @@
+const isObject = require('isobject');
+
 module.exports = {
   succeed,
   fail,
@@ -14,7 +16,13 @@ function fail(item) {
 }
 
 function repair(item) {
-  return { ...item };
+  if(isObject(item)){
+    item.durability < 100 ? item.durability = 100: {...item};
+  }else{
+    throw new Error;
+  }
+  
+  //return { ...item };
 }
 
 function get(item) {
