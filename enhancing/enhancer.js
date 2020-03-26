@@ -17,7 +17,17 @@ function fail(item) {
 
 function repair(item) {
   if(isObject(item)){
-    item.durability < 100 ? item.durability = 100: {...item};
+    //console.log('length',Object.keys(item).length);
+    if(Object.keys(item).length !== 3){
+        throw new Error;
+      // }else{
+      //   item.durability < 100 ? item.durability = 100: {...item};
+      }
+    if(typeof item.name !== 'string'){throw new Error;}
+    if(!Number.isInteger(item.durability) || !Number.isInteger(item.enhancement)){
+      throw new Error;
+    }
+      item.durability < 100 ? item.durability = 100: {...item};
   }else{
     throw new Error;
   }
